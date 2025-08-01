@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpojKa - Vyhledávání spojů</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1><img src="./icons/rocket.png" alt="Logo rakety" class="header-icon"> SpojKa</h1>
+        <nav>
+            <ul>
+                <li><a href="#search-section">Vyhledat spojení</a></li>
+                <li><a href="#departures-section">Odjezdy ze stanice</a></li>
+                <li><a href="#about-section">O aplikaci</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="search-section" class="search-section">
+            <h2><i class="fas fa-search"></i> Vyhledat spojení</h2>
+            <div class="input-group">
+                <label for="fromStation">Z:</label>
+                <input type="text" id="fromStation" placeholder="Výchozí stanice" autocomplete="off">
+                <div id="fromStationSuggestions" class="suggestions-container"></div>
+            </div>
+            <div class="input-group">
+                <label for="viaStation">Přes:</label>
+                <input type="text" id="viaStation" placeholder="Volitelná stanice" autocomplete="off">
+                <div id="viaStationSuggestions" class="suggestions-container"></div>
+            </div>
+            <div class="input-group">
+                <label for="toStation">Do:</label>
+                <input type="text" id="toStation" placeholder="Cílová stanice" autocomplete="off">
+                <div id="toStationSuggestions" class="suggestions-container"></div>
+            </div>
+            <button id="searchButton"><i class="fas fa-route"></i> Hledat</button>
+
+            <section id="search-results">
+                <h3>Výsledky vyhledávání:</h3>
+                <ul id="searchResults">
+                    </ul>
+            </section>
+        </section>
+
+        <section id="departures-section" class="departures-section">
+            <h2><i class="fas fa-clock"></i> Odjezdy ze stanice</h2>
+            <div class="input-group">
+                <label for="departureStation">Stanice:</label>
+                <input type="text" id="departureStation" placeholder="Zadejte stanici" autocomplete="off">
+                <div id="departureStationSuggestions" class="suggestions-container"></div>
+            </div>
+            <button id="showDeparturesButton"><i class="fas fa-list"></i> Zobrazit odjezdy</button>
+
+            <section id="departure-results">
+                <h3>Odjezdy:</h3>
+                <ul id="departureResults">
+                    </ul>
+            </section>
+        </section>
+
+        <section id="about-section" class="about-section">
+            <h2><i class="fas fa-info-circle"></i> O aplikaci SpojKa</h2>
+            <p>Vítejte v aplikaci SpojKa! Tato jednoduchá webová aplikace vám pomůže najít spojení a zobrazit odjezdy mezi různými stanicemi.</p>
+            <p>Aplikace je poháněna statickými daty pro stanice, spoje a výluky, což ji činí rychlou a nezávislou na externích API. Data jsou uložena v jednoduchých JavaScriptových souborech pro snadnou úpravu.</p>
+            <p><strong>Funkce:</strong></p>
+            <ul>
+                <li>Vyhledávání spojení mezi dvěma stanicemi s volitelným průjezdem přes třetí stanici.</li>
+                <li>Podpora přestupů (až do 2 přestupů).</li>
+                <li>Zobrazení detailů konkrétního spoje.</li>
+                <li>Zobrazení odjezdů z vybrané stanice.</li>
+                <li>Autocomplete pro názvy stanic pro rychlé zadávání.</li>
+                <li>Simulace výluk na trati.</li>
+            </ul>
+            <p>Aplikace byla vytvořena jako ukázka základních principů webového vývoje s využitím HTML, CSS a Vanilla JavaScriptu.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 SpojKa. Vytvořeno pro vzdělávací účely.</p>
+    </footer>
+
+    <div id="connectionDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalConnectionName"></h2>
+            <div id="modalConnectionDetails"></div>
+        </div>
+    </div>
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>

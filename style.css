@@ -1,0 +1,484 @@
+/* style.css */
+
+/* Základní styly */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Světlejší šedozelená */
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #2c3e50; /* Tmavě modrá/šedá */
+    color: #ecf0f1; /* Světlejší text (pro h1 a nadpisy v headeru) */
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: #34495e; /* Změněno na světlejší barvu, aby byla viditelná na tmavém pozadí */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background-color: #34495e; /* Trochu světlejší odstín nav background */
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+section h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+section h3 {
+    color: #34495e;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    position: relative; /* Pro autocomplete suggestions */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Zahrnout padding do šířky */
+}
+
+button {
+    background-color: #3498db; /* Světlejší modrá */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2980b9; /* Tmavší modrá při hoveru */
+    transform: translateY(-2px);
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #ecf0f1; /* Světlá šedá pro položky */
+    border: 1px solid #dde7eb;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-start; /* Zarovnání obsahu na začátek */
+    gap: 15px; /* Mezera mezi ikonou a textem */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    color: #333; /* Tmavý text na světlejším pozadí */
+}
+
+ul li p {
+    margin: 0; /* Odstraní defaultní margin z paragrafů uvnitř li */
+    color: #555; /* Trochu světlejší text pro paragrafy */
+}
+
+.no-results {
+    color: #e74c3c; /* Červená pro žádné výsledky */
+    font-style: italic;
+    background-color: #ffe0e0;
+    border-color: #ffb3b3;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Styly pro autocomplete suggestions */
+.suggestions-container {
+    position: absolute;
+    top: 100%; /* Pod inputem */
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none; /* Skryté, dokud není aktivní */
+}
+
+.suggestions-container.active {
+    display: block; /* Zobrazí se, když je aktivní */
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.highlighted {
+    background-color: #e6f7ff; /* Světle modrá při hoveru/highlightu */
+    font-weight: bold;
+}
+
+/* Styly pro ikony ve výsledcích a detailech */
+.result-icon {
+    flex-shrink: 0; /* Zabrání zmenšování ikony */
+    width: 32px; /* Pevná šířka pro ikonu */
+    height: 32px; /* Pevná výška pro ikonu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Kruhový tvar */
+    background-color: #a7d9ef; /* Základní barva pozadí pro ikony */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.result-icon img {
+    max-width: 80%; /* Aby se vešla ikona do kruhu */
+    max-height: 80%;
+    object-fit: contain;
+}
+
+.result-content {
+    flex-grow: 1; /* Povolí obsahu, aby zabral zbývající místo */
+}
+
+/* Barva názvu vlaku bude nyní defaultní (černá/tmavě šedá) */
+.result-content strong.clickable-connection-name {
+    cursor: pointer;
+    font-size: 1.1em;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+    color: #333; /* Explicitně nastaveno na výchozí tmavou barvu */
+}
+
+.result-content strong.clickable-connection-name:hover {
+    color: #3498db; /* Změna barvy při najetí (modrá) */
+}
+
+
+/* Barvy pozadí ikon pro různé typy spojení - text už nebude mít speciální barvu */
+.result-icon.connection-type-os { /* Osobní vlak */
+    background-color: #d4f7e2; /* Zelená */
+}
+
+.result-icon.connection-type-r { /* Rychlík */
+    background-color: #ffeccf; /* Oranžová */
+}
+
+.result-icon.connection-type-ex { /* Expres */
+    background-color: #ffd9d9; /* Červená */
+}
+
+.result-icon.connection-type-ec, .result-icon.connection-type-ic { /* EuroCity, InterCity */
+    background-color: #f3e6f9; /* Fialová */
+}
+
+.result-icon.connection-type-bus {
+    background-color: #d1ecf1; /* Modrá */
+}
+
+.result-icon.connection-type-tram {
+    background-color: #e0faf7; /* Tyrkysová */
+}
+
+.result-icon.connection-type-trolleybus {
+    background-color: #f9dcdc; /* Tmavě červená */
+}
+
+.result-icon.connection-type-ship {
+    background-color: #e6e9ed; /* Tmavě šedá */
+}
+
+.result-icon.connection-type-plane {
+    background-color: #f0f3f3; /* Šedá */
+}
+
+.transfer-icon {
+    background-color: #ffeaa7; /* Světle žlutá pro přestup */
+}
+
+.connection-segments {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.connection-segments li {
+    background-color: transparent; /* Přepsat základní pozadí li */
+    border: none;
+    padding: 3px 0;
+    margin-bottom: 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333; /* Text segmentu v světlém režimu */
+}
+
+/* Zde je upravený styl pro ikonu segmentu, aby se tam vešla ikona dopravního prostředku */
+/* Používám stejné nastavení jako .result-icon, aby se barva pozadí převzala z connection-type-os/r/ex atd. */
+.connection-segments li .connection-segment-icon {
+    flex-shrink: 0;
+    width: 24px; /* O něco menší než hlavní ikony */
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Přidáno stínování pro konzistenci */
+    /* Barva pozadí bude určena podle connection-type-XYZ třídy, která bude dynamicky přidána JS */
+}
+
+.connection-segments li .connection-segment-icon img {
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
+}
+
+
+/* Styly pro modální okno */
+.modal {
+    display: none; /* Skryté ve výchozím stavu */
+    position: fixed; /* Zůstává na místě i při scrollování */
+    z-index: 1000; /* Bude nad vším ostatním */
+    left: 0;
+    top: 0;
+    width: 100%; /* Plná šířka */
+    height: 100%; /* Plná výška */
+    overflow: auto; /* Povolí scroll, pokud je obsah moc velký */
+    background-color: rgba(0,0,0,0.6); /* Ztmaví pozadí */
+    padding: 20px; /* Okraj, aby se modál nedotýkal okrajů */
+    box-sizing: border-box; /* Zahrnout padding do velikosti */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centrování */
+    padding: 30px;
+    border: 1px solid #888;
+    width: 80%; /* Šířka modálního okna */
+    max-width: 700px; /* Maximální šířka */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    max-height: 90vh; /* Maximální výška viewportu */
+    overflow-y: auto; /* Povolí scroll pro obsah modálu */
+    color: #333; /* Tmavý text na světlém pozadí modálu */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+}
+
+.modal-content h3 {
+    color: #34495e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.modal-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-content ul li {
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #333; /* Text v modálním li */
+}
+
+.modal-content ul li .detail-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background-color: #a7d9ef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content ul li .detail-icon img {
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: contain;
+}
+
+.modal-content p {
+    margin: 5px 0;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #34495e;
+    color: #ecf0f1;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* Responsivní design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    .input-group input[type="text"] {
+        width: 100%;
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav a {
+        font-size: 0.9em;
+    }
+
+    button {
+        width: 100%;
+        justify-content: center;
+    }
+}
